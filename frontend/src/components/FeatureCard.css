@@ -1,0 +1,71 @@
+.feat {
+  position: relative;
+  background: radial-gradient(
+      circle 150px at var(--mx, 50%) var(--my, 50%),
+      rgba(93, 234, 208, 0.12),
+      rgba(233, 199, 131, 0.03) 60%,
+      transparent 100-percent
+    ),
+    rgba(10, 24, 48, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 32px 28px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.feat:hover {
+  border-color: rgba(93, 234, 208, 0.3);
+  transform: translateY(-4px);
+}
+
+.feat-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(93, 234, 208, 0.1);
+  color: #5dead0;
+  border: 1px solid rgba(93, 234, 208, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.feat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(93, 234, 208, 0.2), rgba(233, 199, 131, 0.2));
+  border: 1px solid rgba(93, 234, 208, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5dead0;
+  margin-bottom: 22px;
+}
+
+.feat:hover .feat-icon {
+  background: linear-gradient(135deg, rgba(93, 234, 208, 0.3), rgba(233, 199, 131, 0.3));
+  color: #ffffff;
+  border-color: rgba(93, 234, 208, 0.5);
+  box-shadow: 0 0 15px rgba(93, 234, 208, 0.2);
+}
+
+.feat-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.feat-desc {
+  font-size: 14px;
+  color: #8a9fc4;
+  line-height: 1.6;
+  margin: 0;
+}

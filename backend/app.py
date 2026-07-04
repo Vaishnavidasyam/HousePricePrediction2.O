@@ -47,6 +47,12 @@ class PriceOutput(BaseModel):
     total_price: float
 
 
+class CityMetadata(BaseModel):
+    city: str
+    supported_bhk: list[int]
+    localities: list[str]
+
+
 # ---------- Startup: load all city models ----------
 
 @app.on_event("startup")
@@ -172,6 +178,29 @@ def predict_price(inp: PriceInput):
         price_per_sqm=round(price_per_sqm, 2),
         total_price=round(total_price, 2),
     )
+
+
+@app.get("/metadata", response_model=list[CityMetadata])
+def metadata():
+    if not hasattr(app.state, "city_preprocessors"):
+        return []
+
+    output = []
+    for city, preprocessor in app.state.city_preprocessors.items():
+        encoder = getattr(preprocessor, "locality_encoder", None)
+        localities = []
+        if encoder is not None and hasattr(encoder, "classes_"):
+            localities = [str(item) for item in encoder.classes_]
+
+        output.append(
+            CityMetadata(
+                city=city,
+                supported_bhk=sorted(app.state.city_bhk_models.get(city, {}).keys()),
+                localities=localities,
+            )
+        )
+
+    return output
 
 
 @app.get("/")

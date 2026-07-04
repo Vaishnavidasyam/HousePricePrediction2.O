@@ -1,0 +1,23 @@
+.glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 24px;
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-soft);
+}
+
+.metric-chip {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  min-height: 96px;
+}
+
+.metric-label { font-size: 12px; color: var(--text-muted); }
+.metric-value { font-size: 22px; font-weight: 850; margin: 4px 0; color: var(--text-main); }
+.metric-trend.up { color: #10b981; font-size: 12px; }
+.metric-trend.down { color: #ef4444; font-size: 12px; }

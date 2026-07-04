@@ -1,184 +1,93 @@
-import React, { useState } from "react";
-
-import { Building2, BrainCircuit, LayoutGrid } from "lucide-react";
-
-import HomeForm from "./components/HomeForm";
-import ResultCard from "./components/ResultCard";
-import Flat2DLayoutCard from "./components/Flat2DLayoutCard";
-
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
+
+// Core Components
+import CitySkyline from "./components/CitySkyline";
+import PropertyLayoutPage from "./pages/PropertyLayoutPage";
+import PlatformLayout from "./PlatformLayout";
+
+// Sections
+import PropertyHub from "./sections/PropertyHub";
+import ValuationResults from "./sections/ValuationResults";
+import InvestmentIntelligence from "./sections/InvestmentIntelligence";
+import ComparisonCenter from "./sections/ComparisonCenter";
+import SmartCityIntelligence from "./sections/SmartCityIntelligence";
+import Explorer3D from "./sections/Explorer3D";
+import AiAssistantPanel from "./sections/AiAssistantPanel";
 
 import "./App.css";
 
+const HeroSection = () => (
+  <section id="hero" className="hero-3d-container">
+    <CitySkyline />
+    <div className="hero-overlay" />
+
+    <div className="app-shell" style={{ height: "100%", position: "relative", display: "flex", alignItems: "center" }}>
+      <div className="hero-content">
+        <motion.div
+          className="hero-main-card"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="hero-tagline">
+            <span>Integrated Thesis Engine</span>
+          </div>
+          <h1 className="hero-title">
+            Immersive 3D Skyline & <span>AI Valuations</span>
+          </h1>
+          <p className="hero-subtitle">
+            Experience real estate analysis with a procedural 3D model, instant machine learning prices, and theme design suites.
+          </p>
+          <div className="hero-ctas">
+            <Link to="/platform/hub" className="btn-primary">
+              Launch Platform
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  </section>
+);
+
 function App() {
-  const [predictionResult, setPredictionResult] = useState(null);
+  const location = useLocation();
+  const isLanding = location.pathname === "/";
 
-  const [formState, setFormState] = useState({
-    city: "",
-    place: "",
-    bhk: null,
-    areaSqM: "",
-  });
-
-  const handleFormChange = (values) => {
-    setFormState((prev) => ({
-      ...prev,
-      ...values,
-    }));
-  };
+  useEffect(() => {
+    document.body.style.overflow = isLanding ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isLanding]);
 
   return (
-    <div className="app-root">
-      <div className="bg-circle bg-circle-1"></div>
-      <div className="bg-circle bg-circle-2"></div>
-
-      <div className="app-shell">
-        {/* HEADER */}
-
-        <motion.header
-          className="app-header"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="app-logo">
-            <div className="app-logo-img-wrapper">
-              <img src="/home.png" alt="logo" className="app-logo-img" />
-            </div>
-
-            <div className="app-logo-text">
-              <span className="app-logo-title">HouseWorth AI</span>
-
-              <span className="app-logo-sub">
-                Multi-City Apartment Price Estimator
-              </span>
-            </div>
-          </div>
-        </motion.header>
-
-        {/* HERO */}
-
-        <motion.section
-          className="hero-stats"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="hero-card">
-            <div className="hero-icon">
-              <Building2 size={26} />
-            </div>
-
-            <h3>5+</h3>
-
-            <p>Indian Cities</p>
-          </div>
-
-          <div className="hero-card">
-            <div className="hero-icon">
-              <BrainCircuit size={26} />
-            </div>
-
-            <h3>Machine Learning</h3>
-
-            <p>Regression Prediction</p>
-          </div>
-
-          <div className="hero-card">
-            <div className="hero-icon">
-              <LayoutGrid size={26} />
-            </div>
-
-            <h3>2D Layout</h3>
-
-            <p>Interior Visualization</p>
-          </div>
-        </motion.section>
-
-        {/* PANEL */}
-
-        <motion.main
-          className="app-panel"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          <section className="app-panel-header">
-            <h1 className="app-heading">Apartment Value Prediction</h1>
-
-            <p className="app-subheading">
-              Estimate 2BHK and 3BHK apartment prices across major Indian cities
-              with AI-powered analytics and interior layout previews.
-            </p>
-          </section>
-
-          <section className="app-grid">
-            {/* LEFT */}
-
-            <div className="app-column">
-              <div className="app-card">
-                <div className="app-card-header">
-                  <div>
-                    <h2>Property Configuration</h2>
-
-                    <p>Configure apartment details for prediction.</p>
-                  </div>
-
-                  <span className="app-chip">Step 1</span>
-                </div>
-
-                <HomeForm
-                  onResult={setPredictionResult}
-                  onFormChange={handleFormChange}
-                  initialValues={{
-                    city: formState.city,
-                    place: formState.place,
-                    bhk: formState.bhk,
-                    areaSqM: formState.areaSqM,
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* RIGHT */}
-
-            <div className="app-column">
-              <div className="app-card">
-                <div className="app-card-header">
-                  <div>
-                    <h2>Predicted Market Price</h2>
-
-                    <p>AI-generated apartment valuation.</p>
-                  </div>
-
-                  <span className="app-chip app-chip-green">Step 2</span>
-                </div>
-
-                <ResultCard result={predictionResult} />
-              </div>
-
-              <div className="app-card">
-                <div className="app-card-header">
-                  <div>
-                    <h2>2D Interior Layout</h2>
-
-                    <p>Smart visualization based on BHK.</p>
-                  </div>
-
-                  <span className="app-chip app-chip-blue">Step 3</span>
-                </div>
-
-                <Flat2DLayoutCard
-                  bhk={formState.bhk}
-                  areaSqM={formState.areaSqM}
-                  place={formState.place}
-                  city={formState.city}
-                />
-              </div>
-            </div>
-          </section>
-        </motion.main>
-      </div>
+    <div className={`app-root ${isLanding ? "landing-root" : "platform-root"}`}>
+      <Routes>
+        <Route path="/" element={<HeroSection />} />
+        <Route path="/platform" element={<PlatformLayout />}>
+          <Route index element={<Navigate to="/platform/hub" replace />} />
+          <Route path="hub" element={<PropertyHub />} />
+          <Route path="valuation" element={<ValuationResults />} />
+          <Route path="investment" element={<InvestmentIntelligence />} />
+          <Route path="comparison" element={<ComparisonCenter />} />
+          <Route path="city" element={<SmartCityIntelligence />} />
+          <Route path="visuals" element={<Explorer3D />} />
+          <Route path="assistant" element={<AiAssistantPanel />} />
+          <Route path="analytics" element={<Navigate to="/platform/investment" replace />} />
+          <Route path="forecast" element={<Navigate to="/platform/investment" replace />} />
+          <Route path="recommendations" element={<Navigate to="/platform/investment" replace />} />
+          <Route path="explorer3d" element={<Navigate to="/platform/visuals" replace />} />
+          <Route path="bhk-explorer" element={<Navigate to="/platform/visuals" replace />} />
+          <Route path="interior" element={<Navigate to="/platform/visuals" replace />} />
+          <Route path="builder" element={<Navigate to="/platform/city" replace />} />
+          <Route path="land" element={<Navigate to="/platform/city" replace />} />
+          <Route path="dashboard" element={<Navigate to="/platform/investment" replace />} />
+          <Route path="reports" element={<Navigate to="/platform/assistant" replace />} />
+        </Route>
+        <Route path="/layout" element={<PropertyLayoutPage />} />
+      </Routes>
     </div>
   );
 }

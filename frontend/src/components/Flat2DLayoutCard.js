@@ -22,8 +22,8 @@ const Flat2DLayoutCard = ({ bhk, areaSqM, place, city }) => {
         </div>
         {hasBhk && (
           <div className="fl-chip">
-            {bhkNum} BHK · ~{approxArea} m²
-            {place ? ` · ${place}` : city ? ` · ${city}` : ""}
+            {bhkNum} BHK - ~{approxArea} m2
+            {place ? ` - ${place}` : city ? ` - ${city}` : ""}
           </div>
         )}
       </div>
@@ -42,7 +42,7 @@ const Flat2DLayoutCard = ({ bhk, areaSqM, place, city }) => {
             />
           </div>
           <div className="fl-note">
-            Layout is illustrative only and not from actual listings. It’s meant
+            Layout is illustrative only and not from actual listings. It is meant
             to support understanding of space distribution.
           </div>
         </>

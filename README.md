@@ -1,218 +1,177 @@
-# 🏠 HouseWorth AI
+# House Price Prediction 2.0
 
-AI-powered apartment price prediction platform built using Machine Learning, FastAPI, and React.js.
+A real estate price prediction tool that helps users estimate property prices across five major Indian cities — Hyderabad, Bengaluru, Mumbai, Kolkata, and Gurgaon.
 
-HouseWorth AI estimates apartment prices across multiple Indian cities and provides smart 2D interior layout visualization with a premium SaaS-style UI.
+## Project Description
 
----
+This project was built to make house price estimation easier and more interactive. Instead of manually checking multiple websites or talking to brokers, users can just enter property details like city, locality, area, and number of bedrooms, and get an estimated price instantly.
 
-# ✨ Features
+The backend uses machine learning models trained on real estate data to predict prices. The frontend is a full-featured web app with a dashboard, 3D visualizations, comparison tools, and an AI assistant that answers questions about properties. The project was originally developed as a data science / machine learning exercise and later expanded into a full-stack application.
 
-✅ AI-powered apartment price prediction  
-✅ Multi-city support  
-✅ 2BHK & 3BHK configuration  
-✅ Dynamic locality selection  
-✅ Price estimation using ML regression  
-✅ Smart 2D apartment layout preview  
-✅ Modern glassmorphism dashboard UI  
-✅ Responsive design  
-✅ Interactive animations using Framer Motion  
-✅ FastAPI backend integration  
+## Features
 
----
+- **Price Prediction** — Get instant price estimates for apartments, villas, plots, and other property types
+- **Multi-City Support** — Works for 5 Indian cities with city-specific ML models
+- **City Comparison** — Compare property prices and investment metrics between two cities side-by-side
+- **AI Assistant** — Ask questions about property value, rental yield, growth forecasts, and investment risk
+- **3D Property Viewer** — Visualize floor plans in 2D and 3D with interactive controls
+- **City Intelligence Dashboard** — View demand scores, infrastructure ratings, locality data, and land prices for each city
+- **Investment Analysis** — Get growth projections, rental yield estimates, and investment verdicts
+- **Dark/Light Theme** — Toggle between dark and light mode
 
-# 📸 UI Preview
+## Technologies Used
 
-## Dashboard
-- Premium SaaS-inspired interface
-- AI-powered valuation cards
-- Interactive property configuration
+**Frontend:**
+- React 19
+- React Router (client-side routing)
+- Three.js / React Three Fiber (3D visualization)
+- Framer Motion (animations)
+- Lucide React (icons)
+- Axios (API calls)
+- Bootstrap
 
-## Prediction System
-- City-wise apartment pricing
-- Locality-based estimation
-- Price per square meter calculation
-
-## Layout Visualization
-- Smart 2D apartment layout previews
-- Configuration-based rendering
-
----
-
-# 🛠 Tech Stack
-
-## Frontend
-- React.js
-- CSS3
-- Framer Motion
-- Lucide React
-- Axios
-
-## Backend
-- FastAPI
+**Backend:**
 - Python
+- FastAPI (REST API framework)
+- Scikit-learn (Random Forest model)
+- Pandas & NumPy (data processing)
+- Joblib (model serialization)
+- Uvicorn (server)
 
-## Machine Learning
-- Regression Model
-- Scikit-learn
-- Pandas
-- NumPy
+**ML Models:**
+- Random Forest Regressor trained per city per BHK type (2BHK and 3BHK)
+- Label encoding for localities
 
----
+## Project Structure
 
-# 📂 Project Structure
-
-```bash
-HousePricePrediction/
-│
-├── backend/
-│   ├── app.py
-│   ├── model/
-│   └── requirements.txt
-│
-├── frontend/
-│   ├── public/
+```
+HousePricePrediction2.O/
+├── backend/                  # Python FastAPI backend
+│   ├── app.py                # Main API server with /predict and /metadata endpoints
+│   ├── data_preprocessing.py # Data cleaning and preprocessing for Hyderabad
+│   ├── bengaluru_preprocessing.py
+│   ├── mumbai_preprocessing.py
+│   ├── kolkata_preprocessing.py
+│   ├── gurgaon_preprocessing.py
+│   ├── train_model.py        # Script to train Hyderabad model
+│   ├── train_model_bengaluru.py
+│   ├── train_model_mumbai.py
+│   ├── train_model_kolkata.py
+│   ├── train_model_gurgaon.py
+│   ├── requirements.txt      # Python dependencies
+│   └── models/               # Saved ML models (pickle files)
+├── frontend/                 # React web application
 │   ├── src/
-│   ├── package.json
-│   └── README.md
-│
-├── dataset/
-├── model/
-├── house_prediction.ipynb
-└── README.md
+│   │   ├── App.js            # Main app with routing
+│   │   ├── PlatformLayout.js # Sidebar + navbar layout
+│   │   ├── sections/         # Page components
+│   │   │   ├── PropertyHub.js           # Main valuation form
+│   │   │   ├── ValuationResults.js      # Detailed property report
+│   │   │   ├── ComparisonCenter.js      # Compare two cities
+│   │   │   ├── SmartCityIntelligence.js # City insights dashboard
+│   │   │   ├── InvestmentIntelligence.js # Investment analysis
+│   │   │   ├── Explorer3D.js           # 3D property viewer
+│   │   │   └── AiAssistantPanel.js     # AI chatbot for queries
+│   │   ├── components/       # Reusable UI components
+│   │   ├── data/
+│   │   │   └── marketData.js # City profiles, price logic, helpers
+│   │   ├── hooks/
+│   │   │   └── useMarketMetadata.js # Fetches city metadata from API
+│   │   └── pages/
+│   └── package.json
+├── dataset/                  # CSV data files for each city
+│   ├── hyderabad.csv
+│   ├── Bengaluru_House_Data.csv
+│   ├── mumbai.csv
+│   ├── kolkata.csv
+│   ├── gurgaon_10k.csv
+│   └── facets/               # Breakdown of categorical features
+├── model/                    # Additional saved models
+│   ├── house_price_model.pickle
+│   └── columns.json
+└── house_prediction.ipynb    # Jupyter notebook for model training
 ```
+
+## Installation
+
+### Prerequisites
+- Python 3.8+ installed
+- Node.js 18+ installed
+- Git installed
+
+### Steps
+
+1. **Clone the repository**
+   ```
+   git clone https://github.com/your-username/HousePricePrediction2.O.git
+   cd HousePricePrediction2.O
+   ```
+
+2. **Set up the backend**
+   ```
+   cd backend
+   pip install -r requirements.txt
+   ```
+
+3. **Start the backend server**
+   ```
+   uvicorn app:app --reload
+   ```
+   The API will run at `http://127.0.0.1:8000`.
+
+4. **Set up the frontend** (in a new terminal)
+   ```
+   cd frontend
+   npm install
+   ```
+
+5. **Start the frontend**
+   ```
+   npm start
+   ```
+   The app will open at `http://localhost:3000`.
+
+> **Note:** The frontend works even if the backend is not running — it falls back to built-in estimation logic. But for ML-powered predictions, keep the backend running.
+
+## How to Use
+
+1. Open the app in your browser at `http://localhost:3000`
+2. Click **Launch Platform** on the home page
+3. On the **Property Hub** page, select a city, locality, property type, BHK, and area
+4. Click **Execute Full Market Valuation** to get a price estimate
+5. View the detailed report on the **Valuation** page with price breakdown, growth forecast, and comparison table
+6. Use the sidebar to explore:
+   - **Compare** — Compare two cities side-by-side
+   - **City & Land** — View city scores, locality data, land prices
+   - **Investment** — Analyze investment scenarios
+   - **Visual Studio** — Explore properties in 3D
+   - **AI Assistant** — Chat with the AI advisor about properties
+
+## Screenshots
+
+*Add screenshots here:*
+- `screenshot-home.png` — Home page with 3D skyline
+- `screenshot-hub.png` — Property Hub with valuation form
+- `screenshot-valuation.png` — Valuation results with charts
+- `screenshot-comparison.png` — City comparison view
+- `screenshot-city-intel.png` — City intelligence dashboard
+- `screenshot-3d-viewer.png` — 3D property viewer
+- `screenshot-ai-assistant.png` — AI assistant chat panel
+
+## Future Improvements
+
+- Add more cities and property types
+- Train models for more BHK configurations (1BHK, 4BHK, 5BHK)
+- Use deep learning models for better accuracy
+- Add user authentication and saved property portfolios
+- Integrate live property listing data from real estate APIs
+- Add map-based property search
+- Deploy the app to cloud (AWS, Vercel, or Railway)
+
+## Author
+
+Vaishnavidasyam
 
 ---
 
-# 🚀 Frontend Installation
-
-## Navigate to frontend
-
-```bash
-cd frontend
-```
-
-## Install dependencies
-
-```bash
-npm install
-```
-
-## Run React app
-
-```bash
-npm start
-```
-
-Frontend runs on:
-
-```bash
-http://localhost:3000
-```
-
----
-
-# ⚙️ Backend Installation
-
-## Navigate to backend
-
-```bash
-cd backend
-```
-
-## Create virtual environment
-
-```bash
-python -m venv .venv
-```
-
-## Activate environment
-
-### Windows
-
-```bash
-.venv\Scripts\activate
-```
-
-### Mac/Linux
-
-```bash
-source .venv/bin/activate
-```
-
-## Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-## Run FastAPI server
-
-```bash
-uvicorn app:app --reload
-```
-
-Backend runs on:
-
-```bash
-http://127.0.0.1:8000
-```
-
----
-
-# 🧠 Machine Learning Workflow
-
-1. Dataset preprocessing
-2. Feature engineering
-3. Regression model training
-4. Price prediction API generation
-5. Frontend integration with FastAPI
-6. Real-time apartment value estimation
-
----
-
-# 🌟 UI Highlights
-
-- Modern glassmorphism design
-- Gradient dashboard cards
-- Animated components
-- Responsive layouts
-- Premium typography
-- SaaS-inspired interface
-- Interactive form experience
-
----
-
-# 📊 Supported Cities
-
-- Hyderabad
-- Bengaluru
-- Mumbai
-- Kolkata
-- Gurgaon
-
----
-
-# 🔮 Future Enhancements
-
-- 3D apartment visualization
-- Real-time property listings
-- AI chatbot assistant
-- Property comparison dashboard
-- Mortgage calculator
-- Nearby amenities analysis
-- Interactive map integration
-
----
-
-# 👨‍💻 Author
-
-## Vaishnavi Dasyam
-
-AI + Full Stack Developer
-
----
-
-# 📜 License
-
-This project is developed for educational and portfolio purposes.
+*This project was built as part of a learning exercise in data science and full-stack development.*

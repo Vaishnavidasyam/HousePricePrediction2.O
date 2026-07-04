@@ -1,0 +1,709 @@
+/* ══════════════════════════════════════════════════════════════════
+   ESTATEVERSE AI PROPERTY EXPLORER — Premium CSS
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  --ev-bg: #050816;
+  --ev-card: #0f172a;
+  --ev-card-el: #1e293b;
+  --ev-text: #ffffff;
+  --ev-text-sec: #cbd5e1;
+  --ev-accent: #14b8a6;
+  --ev-accent-rgb: 20, 184, 166;
+  --ev-border: rgba(255, 255, 255, 0.08);
+  --ev-glow: rgba(20, 184, 166, 0.15);
+  --ev-btn-bg: rgba(255, 255, 255, 0.03);
+  --ev-btn-hover: rgba(255, 255, 255, 0.07);
+}
+
+[data-theme='light'] {
+  --ev-bg: #f8fafc;
+  --ev-card: #ffffff;
+  --ev-card-el: #f1f5f9;
+  --ev-text: #0f172a;
+  --ev-text-sec: #475569;
+  --ev-accent: #0f766e;
+  --ev-accent-rgb: 15, 118, 110;
+  --ev-border: rgba(15, 23, 42, 0.08);
+  --ev-glow: rgba(15, 118, 110, 0.1);
+  --ev-btn-bg: rgba(0, 0, 0, 0.02);
+  --ev-btn-hover: rgba(0, 0, 0, 0.06);
+}
+
+/* Page shell */
+.ev-explorer-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 70px);
+  background: var(--ev-bg);
+  color: var(--ev-text);
+  font-family: 'Inter', -apple-system, sans-serif;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 3-Column main layout */
+.ev-main-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr 380px;
+  gap: 16px;
+  flex-grow: 1;
+  padding: 16px 20px 20px;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* Sidebar panels */
+.ev-side-panel {
+  background: var(--ev-card);
+  border: 1px solid var(--ev-border);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+.ev-side-panel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Section labels */
+.ev-section-title {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--ev-text-sec);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.8;
+}
+
+.ev-header-block {
+  border-bottom: 1px solid var(--ev-border);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+.ev-eyebrow {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ev-accent);
+}
+.ev-title {
+  font-size: 20px;
+  font-weight: 950;
+  letter-spacing: -0.5px;
+  margin: 4px 0 2px;
+}
+.ev-sub {
+  font-size: 11px;
+  color: var(--ev-text-sec);
+  line-height: 1.4;
+}
+
+/* Property configuration controls */
+.ev-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ev-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ev-text-sec);
+}
+.ev-select {
+  padding: 10px 14px;
+  background: var(--ev-btn-bg);
+  border: 1px solid var(--ev-border);
+  border-radius: 12px;
+  color: var(--ev-text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  transition: all 0.2s;
+}
+.ev-select:focus {
+  border-color: var(--ev-accent);
+}
+
+.ev-slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ev-slider-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+}
+.ev-slider-val {
+  color: var(--ev-accent);
+}
+.ev-slider {
+  width: 100%;
+  accent-color: var(--ev-accent);
+  cursor: pointer;
+}
+
+/* Swatches grid for configurations */
+.ev-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+.ev-swatch-btn {
+  padding: 8px 0;
+  border-radius: 10px;
+  border: 1px solid var(--ev-border);
+  background: var(--ev-btn-bg);
+  color: var(--ev-text);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.ev-swatch-btn:hover {
+  background: var(--ev-btn-hover);
+  border-color: var(--ev-accent);
+}
+.ev-swatch-btn.active {
+  background: var(--ev-accent);
+  color: #fff;
+  border-color: var(--ev-accent);
+  box-shadow: 0 4px 12px var(--ev-glow);
+}
+
+/* Theme Swatches vertical list */
+.ev-theme-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ev-theme-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--ev-border);
+  background: var(--ev-btn-bg);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ev-theme-card:hover {
+  border-color: var(--ev-accent);
+  background: var(--ev-btn-hover);
+}
+.ev-theme-card.active {
+  border-color: var(--ev-accent);
+  background: rgba(var(--ev-accent-rgb), 0.1);
+}
+.ev-theme-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ev-theme-title {
+  font-size: 12px;
+  font-weight: 700;
+}
+.ev-theme-sub {
+  font-size: 10px;
+  color: var(--ev-text-sec);
+}
+.ev-theme-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--ev-border);
+}
+.ev-theme-card.active .ev-theme-indicator {
+  background: var(--ev-accent);
+  border-color: var(--ev-accent);
+}
+
+/* Room shortcuts list */
+.ev-room-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ev-room-pill {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--ev-border);
+  background: var(--ev-btn-bg);
+  color: var(--ev-text);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ev-room-pill:hover {
+  border-color: var(--ev-accent);
+  background: var(--ev-btn-hover);
+}
+.ev-room-pill.active {
+  background: rgba(var(--ev-accent-rgb), 0.15);
+  border-color: var(--ev-accent);
+  color: var(--ev-accent);
+  font-weight: 700;
+}
+
+/* Active Room Metadata display */
+.ev-room-meta-box {
+  background: var(--ev-card-el);
+  border: 1px solid var(--ev-border);
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+.ev-meta-header {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ev-accent);
+  border-bottom: 1px solid var(--ev-border);
+  padding-bottom: 6px;
+}
+.ev-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.ev-meta-item {
+  display: flex;
+  flex-direction: column;
+}
+.ev-meta-label {
+  font-size: 9px;
+  color: var(--ev-text-sec);
+  text-transform: uppercase;
+}
+.ev-meta-val {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* 3D Visualization Center (Center Panel) */
+.ev-viewport-panel {
+  position: relative;
+  border-radius: 24px;
+  border: 1px solid var(--ev-border);
+  overflow: hidden;
+  background: #030712;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+.ev-viewport-panel.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  border-radius: 0;
+  border: none;
+}
+
+/* Controls overlays inside Canvas viewport */
+.ev-hud-legend {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  padding: 12px 18px;
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ev-hud-title {
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+.ev-hud-sub {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ev-hud-hint {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Floating Toolbar bar */
+.ev-floating-toolbar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  padding: 6px;
+  border-radius: 16px;
+  z-index: 10;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+.ev-hud-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ev-hud-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ev-accent);
+}
+.ev-hud-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Visual overlays for layers (Plot Sun paths, Metro networks) */
+.ev-layer-controls {
+  position: absolute;
+  bottom: 74px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  padding: 4px;
+  border-radius: 12px;
+  gap: 4px;
+  z-index: 10;
+}
+.ev-layer-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.ev-layer-btn.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--ev-accent);
+}
+
+/* Screenshot flash effect overlay */
+.ev-flash-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Right Panel: AI & Investment Insights */
+.ev-badge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: var(--ev-card-el);
+  border: 1px solid var(--ev-border);
+  border-radius: 18px;
+  text-align: center;
+}
+.ev-badge-heading {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--ev-text-sec);
+  margin-bottom: 6px;
+}
+.ev-recommendation-badge {
+  font-size: 26px;
+  font-weight: 950;
+  letter-spacing: 0.5px;
+  text-shadow: 0 4px 16px rgba(var(--ev-accent-rgb), 0.35);
+  transition: all 0.3s;
+}
+.ev-recommendation-badge.buy { color: #10b981; }
+.ev-recommendation-badge.hold { color: #f59e0b; }
+.ev-recommendation-badge.avoid { color: #ef4444; }
+
+/* Property Health breakdown bar indicator */
+.ev-health-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ev-health-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ev-health-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+}
+.ev-bar-track {
+  height: 6px;
+  background: var(--ev-btn-bg);
+  border-radius: 50px;
+  overflow: hidden;
+}
+.ev-bar-fill {
+  height: 100%;
+  background: var(--ev-accent);
+  border-radius: 50px;
+  transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+
+/* 10-Year Price Forecast chart */
+.ev-chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--ev-card-el);
+  border: 1px solid var(--ev-border);
+  border-radius: 16px;
+  padding: 14px;
+}
+.ev-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ev-chart-legend {
+  display: flex;
+  gap: 10px;
+  font-size: 9px;
+  font-weight: 700;
+}
+.ev-legend-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+/* AI Copilot Messaging Console */
+.ev-copilot-container {
+  border: 1px solid var(--ev-border);
+  background: var(--ev-card-el);
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 240px;
+  box-sizing: border-box;
+}
+.ev-chat-window {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scrollbar-width: none;
+}
+.ev-chat-window::-webkit-scrollbar {
+  display: none;
+}
+.ev-msg {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+.ev-msg.ai {
+  background: var(--ev-btn-bg);
+  color: var(--ev-text);
+  align-self: flex-start;
+  border-top-left-radius: 2px;
+}
+.ev-msg.user {
+  background: var(--ev-accent);
+  color: #fff;
+  align-self: flex-end;
+  border-top-right-radius: 2px;
+}
+.ev-copilot-prompts {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.ev-copilot-prompts::-webkit-scrollbar {
+  display: none;
+}
+.ev-prompt-chip {
+  padding: 6px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--ev-border);
+  background: var(--ev-btn-bg);
+  color: var(--ev-text-sec);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.ev-prompt-chip:hover {
+  border-color: var(--ev-accent);
+  color: var(--ev-accent);
+}
+
+.ev-copilot-input-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.ev-copilot-input {
+  flex-grow: 1;
+  background: var(--ev-btn-bg);
+  border: 1px solid var(--ev-border);
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--ev-text);
+  font-size: 12px;
+  outline: none;
+  transition: all 0.2s;
+}
+.ev-copilot-input:focus {
+  border-color: var(--ev-accent);
+}
+.ev-copilot-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: var(--ev-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ev-copilot-btn:hover {
+  opacity: 0.9;
+}
+.ev-copilot-btn.recording {
+  background: #ef4444;
+  animation: pulse-red 1.2s infinite;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Audio Visualizer effect during recording */
+.ev-audio-vis {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  height: 12px;
+}
+.ev-vis-bar {
+  width: 2px;
+  height: 100%;
+  background: #ef4444;
+  border-radius: 20px;
+  animation: bounce-bar 0.8s infinite ease-in-out;
+}
+@keyframes bounce-bar {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1.2); }
+}
+
+/* Responsive breakdowns */
+@media (max-width: 1200px) {
+  .ev-main-layout {
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto auto;
+  }
+  .ev-side-panel:last-child {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 900px) {
+  .ev-main-layout {
+    grid-template-columns: 1fr;
+  }
+  .ev-side-panel:first-child, .ev-side-panel:last-child {
+    grid-column: span 1;
+  }
+  .ev-viewport-panel {
+    height: 500px;
+  }
+}
