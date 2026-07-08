@@ -209,7 +209,7 @@ const PropertyHub = () => {
     const payload = { ...formData, area_sqm };
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/predict", payload);
+      const res = await axios.post("https://house-price-api-72zz.onrender.com/predict", payload);
       navigate("/platform/valuation", {
         state: { result: { ...payload, ...res.data }, source: "model" },
       });
