@@ -85,7 +85,7 @@ const HomeForm = ({ onResult, onFormChange, initialValues }) => {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/predict", {
+      const res = await axios.post("https://house-price-api-72zz.onrender.com/predict", {
         city,
         place,
         bhk: Number(bhk),
