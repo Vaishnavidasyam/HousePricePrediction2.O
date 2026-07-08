@@ -1,4 +1,4 @@
-export const API_BASE_URL = "http://127.0.0.1:8000";
+export const API_BASE_URL = "https://house-price-api-72zz.onrender.com";
 
 export const PROPERTY_TYPES = [
   { id: 'apartment', label: 'Apartment', icon: 'Building' },
