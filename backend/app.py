@@ -18,6 +18,7 @@ app = FastAPI(title="Multi-City House Price API")
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "*"  # <-- Add this line
 ]
 
 app.add_middleware(
