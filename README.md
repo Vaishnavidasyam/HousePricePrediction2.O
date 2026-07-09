@@ -147,16 +147,7 @@ HousePricePrediction2.O/
    - **Visual Studio** — Explore properties in 3D
    - **AI Assistant** — Chat with the AI advisor about properties
 
-## Screenshots
-
-*Add screenshots here:*
-- `screenshot-home.png` — Home page with 3D skyline
-- `screenshot-hub.png` — Property Hub with valuation form
-- `screenshot-valuation.png` — Valuation results with charts
-- `screenshot-comparison.png` — City comparison view
-- `screenshot-city-intel.png` — City intelligence dashboard
-- `screenshot-3d-viewer.png` — 3D property viewer
-- `screenshot-ai-assistant.png` — AI assistant chat panel
+ 
 
 ## Future Improvements
 
